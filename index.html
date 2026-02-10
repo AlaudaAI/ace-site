@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACE — Your Guy for Everything Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-sage: #C9DBD0;
+            --color-blue: #B9CEDE;
+            --color-pink: #F2D7E3;
+            --color-yellow: #F9ED8F;
+            --color-tan: #D6C6A3;
+            --color-bg: #F0F0F0;
+            
+            --color-text-strong: #0a0a0a;
+            --color-text-body: #2a2a2a;
+            --color-text-meta: #555555;
+            --color-border: rgba(0, 0, 0, 0.08);
+            
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-heading: 700;
+            --font-body: 400;
+            
+            --radius-lg: 24px;
+            --radius-md: 12px;
+            --radius-sm: 4px;
+            
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 48px;
+            --space-xl: 80px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-bg);
+            color: var(--color-text-body);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--color-text-strong);
+            font-weight: var(--font-heading);
+            letter-spacing: -0.02em;
+        }
+
+        .label-text {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text-meta);
+            margin-bottom: var(--space-xs);
+            display: block;
+        }
+
+        .display-text {
+            font-size: 3rem;
+            line-height: 1.1;
+        }
+
+        .card-title {
+            font-size: 1.75rem;
+            line-height: 1.2;
+            margin-bottom: var(--space-xs);
+        }
+
+        .body-text {
+            font-size: 0.95rem;
+            color: var(--color-text-body);
+            max-width: 60ch;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        /* Header */
+        header {
+            padding: var(--space-md) 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.6rem;
+            letter-spacing: 0.02em;
+            color: var(--color-text-strong);
+        }
+        
+        .logo img {
+            width: 36px;
+            height: 32px;
+            object-fit: contain;
+            animation: waveJumpSmall 4s ease-in-out infinite;
+        }
+        
+        @keyframes waveJumpSmall {
+            0% { transform: translateX(0) translateY(0) rotate(-2deg); }
+            12.5% { transform: translateX(3px) translateY(0) rotate(2deg); }
+            25% { transform: translateX(0) translateY(0) rotate(-2deg); }
+            37.5% { transform: translateX(3px) translateY(0) rotate(2deg); }
+            50% { transform: translateX(0) translateY(0) rotate(0); }
+            55% { transform: translateX(0) translateY(0) scaleY(0.92) scaleX(1.08); }
+            65% { transform: translateX(0) translateY(-8px) scaleY(1.05) scaleX(0.95); }
+            75% { transform: translateX(0) translateY(0) scaleY(0.95) scaleX(1.03); }
+            85% { transform: translateX(0) translateY(-3px); }
+            100% { transform: translateX(0) translateY(0) rotate(-2deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .nav-item {
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--color-text-strong);
+            font-weight: 500;
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+            min-height: 550px;
+        }
+
+        .hero-content {
+            background-color: var(--color-sage);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-image {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-text-strong);
+            color: white;
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: var(--space-md);
+            width: fit-content;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .cta-button-secondary {
+            background-color: transparent;
+            border: 2px solid var(--color-text-strong);
+            color: var(--color-text-strong);
+        }
+
+        /* Section headers */
+        .section-header {
+            margin-bottom: var(--space-lg);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+        
+        @media (max-width: 1000px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-card {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-image-container {
+            height: 280px;
+            width: 100%;
+            position: relative;
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.65);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .card-content {
+            padding: var(--space-md);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content-compact {
+            padding: var(--space-sm);
+        }
+
+        .card-content-compact .card-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-xs);
+        }
+
+        .details-compact {
+            margin-top: var(--space-xs);
+        }
+
+        .details-compact .list-item {
+            padding: 6px 0;
+            font-size: 0.8rem;
+        }
+
+        .card-blue { background-color: var(--color-blue); }
+        .card-pink { background-color: var(--color-pink); }
+        .card-yellow { background-color: var(--color-yellow); }
+        .card-tan { background-color: var(--color-tan); }
+        .card-sage { background-color: var(--color-sage); }
+        .card-more { 
+            background: linear-gradient(135deg, var(--color-sage) 0%, var(--color-blue) 100%);
+            min-height: 400px;
+        }
+
+        .card-more-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: var(--space-md);
+            text-align: center;
+        }
+
+        .card-more-blob {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            margin-bottom: var(--space-sm);
+        }
+
+        .card-more-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-more-content .card-title {
+            margin-bottom: var(--space-xs);
+        }
+
+        .details-list {
+            margin-top: var(--space-md);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 0.9rem;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .data-point {
+            font-variant-numeric: tabular-nums;
+            font-weight: 700;
+            margin-right: var(--space-sm);
+            color: var(--color-text-strong);
+        }
+
+        .data-label {
+            font-weight: 600;
+            color: var(--color-text-strong);
+            flex: 1;
+        }
+
+        .data-meta {
+            font-size: 0.75rem;
+            color: var(--color-text-meta);
+            text-align: right;
+        }
+
+        /* People Section - Horizontal Scroll */
+        .people-section {
+            margin-bottom: var(--space-xl);
+            overflow: hidden;
+        }
+
+        .people-scroll {
+            display: flex;
+            gap: var(--space-lg);
+            padding: var(--space-md) 0 var(--space-lg);
+            animation: scrollPeople 20s linear infinite;
+            width: max-content;
+        }
+
+        .people-scroll:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollPeople {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .person-item {
+            flex: 0 0 auto;
+            width: 200px;
+            text-align: center;
+            scroll-snap-align: start;
+        }
+
+        .person-avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin: 0 auto var(--space-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .person-item:hover .person-avatar {
+            transform: scale(1.05);
+        }
+
+        .person-avatar-sage { background: var(--color-sage); }
+        .person-avatar-tan { background: var(--color-tan); }
+        .person-avatar-pink { background: var(--color-pink); }
+        .person-avatar-blue { background: var(--color-blue); }
+        .person-avatar-yellow { background: var(--color-yellow); }
+
+        .person-placeholder {
+            font-size: 3.5rem;
+        }
+
+        .person-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .person-industry {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--color-text-strong);
+        }
+
+        .person-quote {
+            font-size: 0.85rem;
+            color: var(--color-text-meta);
+            font-style: italic;
+        }
+
+        /* How It Works - Funnel */
+        .funnel-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-xl);
+            text-align: center;
+        }
+
+        .funnel-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-lg);
+            margin: var(--space-lg) 0;
+            flex-wrap: wrap;
+        }
+
+        .funnel-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            position: relative;
+        }
+        
+        .funnel-column.chaos {
+            min-width: 200px;
+        }
+
+        .chaos-pill {
+            background: var(--color-pink);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            animation: chaosShake 0.5s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .chaos-pill:nth-child(1) { animation-delay: 0s; animation-duration: 0.4s; }
+        .chaos-pill:nth-child(2) { animation-delay: 0.1s; animation-duration: 0.5s; }
+        .chaos-pill:nth-child(3) { animation-delay: 0.05s; animation-duration: 0.45s; }
+        .chaos-pill:nth-child(4) { animation-delay: 0.15s; animation-duration: 0.55s; }
+        .chaos-pill:nth-child(5) { animation-delay: 0.08s; animation-duration: 0.42s; }
+        .chaos-pill:nth-child(6) { animation-delay: 0.12s; animation-duration: 0.48s; }
+        
+        @keyframes chaosShake {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(-3px) rotate(-1deg); }
+            50% { transform: translateX(2px) rotate(1deg); }
+            75% { transform: translateX(-2px) rotate(-0.5deg); }
+        }
+        
+        /* Floating chaos bubbles */
+        .chaos-bubble-float {
+            position: absolute;
+            background: var(--color-pink);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: floatChaos 3s ease-in-out infinite;
+        }
+        
+        @keyframes floatChaos {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-20px) scale(1.1); opacity: 0.3; }
+        }
+
+        .solved-pill {
+            background: var(--color-sage);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0;
+            animation: solvedAppear 5s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .solved-pill::after {
+            content: '✨';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0;
+            animation: sparkBurst 5s ease-in-out infinite;
+        }
+        
+        .solved-pill:nth-child(1) { animation-delay: 0s; }
+        .solved-pill:nth-child(2) { animation-delay: 1.2s; }
+        .solved-pill:nth-child(3) { animation-delay: 2.4s; }
+        .solved-pill:nth-child(4) { animation-delay: 3.6s; }
+        
+        .solved-pill:nth-child(1)::after { animation-delay: 0s; }
+        .solved-pill:nth-child(2)::after { animation-delay: 1.2s; }
+        .solved-pill:nth-child(3)::after { animation-delay: 2.4s; }
+        .solved-pill:nth-child(4)::after { animation-delay: 3.6s; }
+        
+        @keyframes solvedAppear {
+            0%, 5% { opacity: 0; transform: translateX(-10px) scale(0.95); }
+            10%, 80% { opacity: 1; transform: translateX(0) scale(1); }
+            85% { opacity: 1; transform: translateX(0) scale(1.05); }
+            90%, 100% { opacity: 0; transform: translateX(5px) scale(0.9); }
+        }
+        
+        @keyframes sparkBurst {
+            0%, 80% { opacity: 0; transform: translateY(-50%) scale(0.5); }
+            85% { opacity: 1; transform: translateY(-50%) scale(1.3); }
+            90% { opacity: 1; transform: translateY(-50%) scale(1); }
+            95%, 100% { opacity: 0; transform: translateY(-50%) scale(0.3) rotate(20deg); }
+        }
+
+        .ace-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Animated Ace Blob */
+        .ace-blob {
+            width: 100px;
+            height: 85px;
+            background: linear-gradient(145deg, #B8CCBD 0%, #9AB89F 40%, #A5C4AC 100%);
+            border-radius: 50% 50% 48% 52% / 55% 52% 48% 45%;
+            position: relative;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            animation: waveJump 4s ease-in-out infinite;
+        }
+        
+        .ace-blob::before {
+            content: '';
+            position: absolute;
+            top: 38%;
+            left: 28%;
+            width: 10px;
+            height: 10px;
+            background: #2a2a2a;
+            border-radius: 50%;
+            box-shadow: 42px 0 0 #2a2a2a;
+        }
+        
+        .ace-blob::after {
+            content: '';
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 12px;
+            border: 2.5px solid #2a2a2a;
+            border-color: transparent transparent #2a2a2a transparent;
+            border-radius: 0 0 24px 24px;
+        }
+        
+        @keyframes waveJump {
+            0% { transform: translateX(0) translateY(0) rotate(-3deg); }
+            12.5% { transform: translateX(10px) translateY(0) rotate(3deg); }
+            25% { transform: translateX(0) translateY(0) rotate(-3deg); }
+            37.5% { transform: translateX(10px) translateY(0) rotate(3deg); }
+            50% { transform: translateX(0) translateY(0) scaleY(1) scaleX(1) rotate(0); }
+            55% { transform: translateX(0) translateY(0) scaleY(0.85) scaleX(1.15) rotate(0); }
+            65% { transform: translateX(0) translateY(-30px) scaleY(1.1) scaleX(0.92) rotate(0); }
+            75% { transform: translateX(0) translateY(0) scaleY(0.9) scaleX(1.08) rotate(0); }
+            82% { transform: translateX(0) translateY(-10px) scaleY(1.02) scaleX(0.98) rotate(0); }
+            90% { transform: translateX(0) translateY(0) scaleY(0.98) scaleX(1.02) rotate(0); }
+            100% { transform: translateX(0) translateY(0) scaleY(1) scaleX(1) rotate(-3deg); }
+        }
+        
+        .ace-blob.large {
+            width: 120px;
+            height: 100px;
+        }
+        
+        .ace-blob.large::before {
+            width: 12px;
+            height: 12px;
+            box-shadow: 50px 0 0 #2a2a2a;
+        }
+        
+        .ace-blob.large::after {
+            width: 28px;
+            height: 14px;
+        }
+
+        .ace-center span {
+            margin-top: var(--space-xs);
+            font-weight: 700;
+            color: var(--color-text-strong);
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: var(--color-text-meta);
+        }
+
+        /* Chat Demo */
+        .chat-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        .chat-info {
+            background: var(--color-blue);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .phone-frame {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .phone-notch {
+            width: 100px;
+            height: 20px;
+            background: var(--color-text-strong);
+            margin: 0 auto;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .chat-header {
+            padding: var(--space-sm);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .chat-avatar {
+            width: 36px;
+            height: 32px;
+        }
+        
+        .chat-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .chat-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .chat-status {
+            font-size: 0.7rem;
+            color: var(--color-text-meta);
+            margin-left: auto;
+        }
+
+        .chat-messages {
+            padding: var(--space-sm);
+            min-height: 320px;
+            background: var(--color-bg);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 0.6rem 0.9rem;
+            border-radius: 14px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .message.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .message.user {
+            background: var(--color-text-strong);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.ace {
+            background: white;
+            color: var(--color-text-body);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.typing-msg {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 4px 0;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            background: var(--color-text-meta);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+
+        .chat-input {
+            padding: var(--space-sm);
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-meta);
+            font-size: 0.85rem;
+            background: white;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-xl);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--space-lg);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        .pricing-row {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            align-items: center;
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .pricing-row:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-tier {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .pricing-price {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Reviews Carousel */
+        .reviews-carousel-section {
+            margin-bottom: var(--space-xl);
+            overflow: hidden;
+            padding: var(--space-md) 0;
+        }
+        
+        .reviews-track {
+            display: flex;
+            gap: var(--space-md);
+            animation: scrollReviews 30s linear infinite;
+            width: max-content;
+        }
+        
+        .reviews-track:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scrollReviews {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .review-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            min-width: 350px;
+            max-width: 350px;
+            flex-shrink: 0;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: var(--space-md);
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .author-title {
+            font-size: 0.75rem;
+            color: var(--color-text-meta);
+        }
+
+        .review-stars {
+            margin-left: auto;
+            font-size: 0.85rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--color-sage);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .cta-section .ace-mascot-img {
+            width: 140px;
+            height: auto;
+            margin: 0 auto var(--space-md);
+            display: block;
+            animation: waveJump 4s ease-in-out infinite;
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--space-lg) 0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+            .hero-image {
+                height: 300px;
+            }
+            .industries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .chat-section {
+                grid-template-columns: 1fr;
+            }
+            .pricing-section {
+                grid-template-columns: 1fr;
+            }
+            .reviews-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+            .display-text {
+                font-size: 2rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .industries-grid {
+                grid-template-columns: 1fr;
+            }
+            .funnel-visual {
+                flex-direction: column;
+            }
+            .arrow {
+                transform: rotate(90deg);
+            }
+            .pricing-section > div:last-child {
+                align-items: center !important;
+                width: 100%;
+            }
+            .pricing-section > div:last-child > div {
+                justify-content: center;
+            }
+            .service-bubble {
+                font-size: 0.85rem;
+                padding: 10px 16px;
+            }
+            .hide-mobile {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><img src="ace-mascot-clean.png" alt="Ace">ACE</div>
+            <nav class="nav-links">
+                <a href="#services" class="nav-item">What We Do</a>
+                <a href="#how-it-works" class="nav-item">How It Works</a>
+                <a href="https://services-silk-nu.vercel.app/" class="nav-item">Service Catalog</a>
+                <a href="#contact" class="nav-item">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="label-text">Your Digital Partner</span>
+                <h1 class="display-text" style="margin-bottom: var(--space-md);">Your guy for everything digital.</h1>
+                <p class="body-text" style="margin-bottom: var(--space-md);">You run your business. We run the rest.</p>
+                <div style="display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+                    <a href="#" class="cta-button">Get Started Free</a>
+                    <a href="#how-it-works" class="cta-button cta-button-secondary">See How It Works</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="hero-people.jpg" alt="Small business owners">
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="section-header" id="services">
+            <span class="label-text">What We Handle</span>
+            <h2>Your Whole Back Office</h2>
+        </section>
+
+        <section class="services-grid">
+            <article class="service-card card-blue">
+                <div class="card-image-container">
+                    <img src="images/marketing.png" alt="Marketing" class="card-image">
+                </div>
+                <div class="card-content card-content-compact">
+                    <h3 class="card-title">Marketing & Lead Gen</h3>
+                    <div class="details-list details-compact">
+                        <div class="list-item"><span class="data-label">SEO & Google Business</span><span class="data-meta">Optimized</span></div>
+                        <div class="list-item"><span class="data-label">Social Media</span><span class="data-meta">Automated</span></div>
+                        <div class="list-item"><span class="data-label">Email Campaigns</span><span class="data-meta">Targeted</span></div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="service-card card-pink">
+                <div class="card-image-container">
+                    <img src="images/sales.png" alt="Sales" class="card-image">
+                </div>
+                <div class="card-content card-content-compact">
+                    <h3 class="card-title">Sales & Pipeline</h3>
+                    <div class="details-list details-compact">
+                        <div class="list-item"><span class="data-label">Lead Tracking</span><span class="data-meta">Real-time</span></div>
+                        <div class="list-item"><span class="data-label">Quote Follow-ups</span><span class="data-meta">Auto</span></div>
+                        <div class="list-item"><span class="data-label">CRM Automation</span><span class="data-meta">Synced</span></div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="service-card card-yellow">
+                <div class="card-image-container">
+                    <img src="images/operations.png" alt="Operations" class="card-image">
+                </div>
+                <div class="card-content card-content-compact">
+                    <h3 class="card-title">Operations & Scheduling</h3>
+                    <div class="details-list details-compact">
+                        <div class="list-item"><span class="data-label">Online Booking</span><span class="data-meta">24/7</span></div>
+                        <div class="list-item"><span class="data-label">No-show Prevention</span><span class="data-meta">Reminders</span></div>
+                        <div class="list-item"><span class="data-label">Staff Coordination</span><span class="data-meta">Scheduled</span></div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="service-card card-tan">
+                <div class="card-image-container">
+                    <img src="images/reviews.png" alt="Reputation" class="card-image">
+                </div>
+                <div class="card-content card-content-compact">
+                    <h3 class="card-title">Reputation & Reviews</h3>
+                    <div class="details-list details-compact">
+                        <div class="list-item"><span class="data-label">Review Requests</span><span class="data-meta">Timed</span></div>
+                        <div class="list-item"><span class="data-label">Response Management</span><span class="data-meta">Quick</span></div>
+                        <div class="list-item"><span class="data-label">Monitoring</span><span class="data-meta">24/7</span></div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="service-card card-sage">
+                <div class="card-image-container">
+                    <img src="images/finance.png" alt="Finance" class="card-image">
+                </div>
+                <div class="card-content card-content-compact">
+                    <h3 class="card-title">Finance & Payments</h3>
+                    <div class="details-list details-compact">
+                        <div class="list-item"><span class="data-label">Auto Invoicing</span><span class="data-meta">Instant</span></div>
+                        <div class="list-item"><span class="data-label">Payment Reminders</span><span class="data-meta">Gentle</span></div>
+                        <div class="list-item"><span class="data-label">Cash Flow Alerts</span><span class="data-meta">Proactive</span></div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="service-card card-more">
+                <div class="card-more-inner">
+                    <img src="images/more.png" alt="And more" class="card-more-blob">
+                    <div class="card-more-content">
+                        <h3 class="card-title">+ More</h3>
+                        <p class="body-text" style="font-size: 0.85rem; opacity: 0.8; margin-bottom: var(--space-sm);">Loyalty programs, win-back campaigns, inventory alerts & whatever else you need.</p>
+                        <a href="#contact" class="cta-button cta-button-secondary" style="padding: 12px 24px; font-size: 0.9rem;">Ask Ace →</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Industries - People Scroll -->
+        <section class="people-section">
+            <div class="container">
+                <span class="label-text">Who We Help</span>
+                <h2 style="margin-bottom: var(--space-lg);">Built for People Like You</h2>
+            </div>
+            
+            <div class="people-scroll">
+                <div class="person-item">
+                    <div class="person-avatar">
+                        <img src="images/person_3.jpg" alt="Home Services">
+                    </div>
+                    <h3 class="person-industry">Home Services</h3>
+                    <p class="person-quote">"I fix pipes, not pixels."</p>
+                </div>
+                
+                <div class="person-item">
+                    <div class="person-avatar">
+                        <img src="images/person_2.jpg" alt="Professional Services">
+                    </div>
+                    <h3 class="person-industry">Professional Services</h3>
+                    <p class="person-quote">"I bill hours, not websites."</p>
+                </div>
+                
+                <div class="person-item">
+                    <div class="person-avatar">
+                        <img src="images/person_1.jpg" alt="Healthcare">
+                    </div>
+                    <h3 class="person-industry">Healthcare & Wellness</h3>
+                    <p class="person-quote">"I heal people, not HTML."</p>
+                </div>
+                
+                <div class="person-item">
+                    <div class="person-avatar">
+                        <img src="images/person_0.jpg" alt="Beauty Salon">
+                    </div>
+                    <h3 class="person-industry">Beauty & Salon</h3>
+                    <p class="person-quote">"I style hair, not stylesheets."</p>
+                </div>
+                
+                <div class="person-item">
+                    <div class="person-avatar">
+                        <img src="images/person_4.jpg" alt="Personal Care">
+                    </div>
+                    <h3 class="person-industry">Personal Care</h3>
+                    <p class="person-quote">"I do hair, not hashtags."</p>
+                </div>
+                
+                <div class="person-item">
+                    <div class="person-avatar">
+                        <img src="images/person_5.jpg" alt="Fitness">
+                    </div>
+                    <h3 class="person-industry">Fitness & Training</h3>
+                    <p class="person-quote">"I build bodies, not backends."</p>
+                </div>
+                
+                <!-- Duplicates for seamless loop -->
+                <div class="person-item">
+                    <div class="person-avatar">
+                        <img src="images/person_3.jpg" alt="Home Services">
+                    </div>
+                    <h3 class="person-industry">Home Services</h3>
+                    <p class="person-quote">"I fix pipes, not pixels."</p>
+                </div>
+                
+                <div class="person-item">
+                    <div class="person-avatar">
+                        <img src="images/person_2.jpg" alt="Professional Services">
+                    </div>
+                    <h3 class="person-industry">Professional Services</h3>
+                    <p class="person-quote">"I bill hours, not websites."</p>
+                </div>
+                
+                <div class="person-item">
+                    <div class="person-avatar">
+                        <img src="images/person_1.jpg" alt="Healthcare">
+                    </div>
+                    <h3 class="person-industry">Healthcare & Wellness</h3>
+                    <p class="person-quote">"I heal people, not HTML."</p>
+                </div>
+                
+                <div class="person-item">
+                    <div class="person-avatar">
+                        <img src="images/person_0.jpg" alt="Beauty Salon">
+                    </div>
+                    <h3 class="person-industry">Beauty & Salon</h3>
+                    <p class="person-quote">"I style hair, not stylesheets."</p>
+                </div>
+                
+                <div class="person-item">
+                    <div class="person-avatar">
+                        <img src="images/person_4.jpg" alt="Personal Care">
+                    </div>
+                    <h3 class="person-industry">Personal Care</h3>
+                    <p class="person-quote">"I do hair, not hashtags."</p>
+                </div>
+                
+                <div class="person-item">
+                    <div class="person-avatar">
+                        <img src="images/person_5.jpg" alt="Fitness">
+                    </div>
+                    <h3 class="person-industry">Fitness & Training</h3>
+                    <p class="person-quote">"I build bodies, not backends."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="funnel-section" id="how-it-works">
+            <span class="label-text">The Process</span>
+            <h2 style="margin-bottom: var(--space-md);">Chaos goes in. Solutions come out.</h2>
+            <p class="body-text" style="margin: 0 auto var(--space-lg);">Just text what you need. Ace handles the rest.</p>
+            
+            <div class="funnel-visual">
+                <div class="funnel-column chaos">
+                    <div class="chaos-pill">😤 Website outdated</div>
+                    <div class="chaos-pill">📞 Missed calls</div>
+                    <div class="chaos-pill">⭐ Bad reviews</div>
+                    <div class="chaos-pill">📉 No leads</div>
+                    <div class="chaos-pill">🤯 No-shows</div>
+                    <div class="chaos-pill">💸 Late payments</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="ace-center">
+                    <img src="ace-mascot-clean.png" alt="Ace" style="width: 100px; height: auto; animation: waveJump 4s ease-in-out infinite;">
+                    <span>Ace</span>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="funnel-column solved">
+                    <div class="solved-pill">Website updated ✓</div>
+                    <div class="solved-pill">Calls answered ✓</div>
+                    <div class="solved-pill">Reviews handled ✓</div>
+                    <div class="solved-pill">Leads flowing ✓</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chat Demo -->
+        <section class="chat-section">
+            <div class="chat-info">
+                <span class="label-text">Just Text</span>
+                <h2 class="display-text" style="font-size: 2.25rem; margin-bottom: var(--space-md);">This is how easy it is.</h2>
+                <p class="body-text">No apps to download. No dashboards to learn. Just text Ace what you need, like you would a friend who happens to know everything about running a business.</p>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="chat-header">
+                    <div class="chat-avatar">
+                        <img src="ace-mascot-clean.png" alt="Ace">
+                    </div>
+                    <div class="chat-name">Ace</div>
+                    <div class="chat-status">Your Business Buddy</div>
+                </div>
+                <div class="chat-messages" id="chat-messages"></div>
+                <div class="chat-input">Text Ace anything...</div>
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        <section class="section-header">
+            <span class="label-text">Testimonials</span>
+            <h2>What Business Owners Say</h2>
+        </section>
+
+        <section class="reviews-carousel-section">
+            <div class="reviews-track">
+                <div class="review-card">
+                    <p class="review-text">"I went from spending 10 hours a week on marketing to basically zero. Ace handles my social posts, responds to reviews, and even sends follow-ups to leads. It's like having a full-time assistant."</p>
+                    <div class="review-author">
+                        <div class="author-avatar"><img src="images/review_1.jpg" alt="Kevin Chen"></div>
+                        <div>
+                            <div class="author-name">Kevin Chen</div>
+                            <div class="author-title">Chen Plumbing, Houston</div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"Finally, my website looks professional! Customers actually comment on it now. And I haven't touched it once — just texted Ace what I wanted and it happened."</p>
+                    <div class="review-author">
+                        <div class="author-avatar"><img src="images/review_2.jpg" alt="Marcus Santos"></div>
+                        <div>
+                            <div class="author-name">Marcus Santos</div>
+                            <div class="author-title">Santos Fitness, Katy</div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"No more missed calls! Ace texts my customers back instantly when I'm on a job. I've booked 3 extra appointments this week just from that."</p>
+                    <div class="review-author">
+                        <div class="author-avatar"><img src="images/review_3.jpg" alt="David Miller"></div>
+                        <div>
+                            <div class="author-name">David Miller</div>
+                            <div class="author-title">Miller Electric, Dallas</div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"My Google reviews went from 12 to 47 in two months. Ace asks every customer for a review at the perfect time. Game changer for my practice."</p>
+                    <div class="review-author">
+                        <div class="author-avatar"><img src="images/review_4.jpg" alt="Jason Park"></div>
+                        <div>
+                            <div class="author-name">Jason Park</div>
+                            <div class="author-title">Park Chiropractic, Austin</div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"I used to forget to send invoices. Now Ace does it automatically and even follows up on late payments. I'm getting paid faster than ever."</p>
+                    <div class="review-author">
+                        <div class="author-avatar"><img src="images/review_5.jpg" alt="Ryan Burke"></div>
+                        <div>
+                            <div class="author-name">Ryan Burke</div>
+                            <div class="author-title">Burke Landscaping, Phoenix</div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"Honestly thought AI stuff wasn't for small businesses like mine. But texting Ace is just like texting my nephew who's good with computers. So easy."</p>
+                    <div class="review-author">
+                        <div class="author-avatar"><img src="images/review_6.jpg" alt="Carlos Mendez"></div>
+                        <div>
+                            <div class="author-name">Carlos Mendez</div>
+                            <div class="author-title">Mendez Auto Repair, Memphis</div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="review-card">
+                    <p class="review-text">"I went from spending 10 hours a week on marketing to basically zero. Ace handles my social posts, responds to reviews, and even sends follow-ups to leads. It's like having a full-time assistant."</p>
+                    <div class="review-author">
+                        <div class="author-avatar"><img src="images/review_1.jpg" alt="Kevin Chen"></div>
+                        <div>
+                            <div class="author-name">Kevin Chen</div>
+                            <div class="author-title">Chen Plumbing, Houston</div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"Finally, my website looks professional! Customers actually comment on it now. And I haven't touched it once — just texted Ace what I wanted and it happened."</p>
+                    <div class="review-author">
+                        <div class="author-avatar"><img src="images/review_2.jpg" alt="Marcus Santos"></div>
+                        <div>
+                            <div class="author-name">Marcus Santos</div>
+                            <div class="author-title">Santos Fitness, Katy</div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"No more missed calls! Ace texts my customers back instantly when I'm on a job. I've booked 3 extra appointments this week just from that."</p>
+                    <div class="review-author">
+                        <div class="author-avatar"><img src="images/review_3.jpg" alt="David Miller"></div>
+                        <div>
+                            <div class="author-name">David Miller</div>
+                            <div class="author-title">Miller Electric, Dallas</div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"My Google reviews went from 12 to 47 in two months. Ace asks every customer for a review at the perfect time. Game changer for my practice."</p>
+                    <div class="review-author">
+                        <div class="author-avatar"><img src="images/review_4.jpg" alt="Jason Park"></div>
+                        <div>
+                            <div class="author-name">Jason Park</div>
+                            <div class="author-title">Park Chiropractic, Austin</div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"I used to forget to send invoices. Now Ace does it automatically and even follows up on late payments. I'm getting paid faster than ever."</p>
+                    <div class="review-author">
+                        <div class="author-avatar"><img src="images/review_5.jpg" alt="Ryan Burke"></div>
+                        <div>
+                            <div class="author-name">Ryan Burke</div>
+                            <div class="author-title">Burke Landscaping, Phoenix</div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"Honestly thought AI stuff wasn't for small businesses like mine. But texting Ace is just like texting my nephew who's good with computers. So easy."</p>
+                    <div class="review-author">
+                        <div class="author-avatar"><img src="images/review_6.jpg" alt="Carlos Mendez"></div>
+                        <div>
+                            <div class="author-name">Carlos Mendez</div>
+                            <div class="author-title">Mendez Auto Repair, Memphis</div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Catalog CTA -->
+        <style>
+            @keyframes float-bubble {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-8px); }
+            }
+            .service-bubble {
+                padding: 12px 24px;
+                border-radius: 50px;
+                font-size: 14px;
+                font-weight: 500;
+                white-space: nowrap;
+                display: inline-block;
+                animation: float-bubble 3s ease-in-out infinite;
+            }
+            .bubble-grid {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+                justify-content: center;
+                gap: 12px;
+                margin: var(--space-md) auto;
+            }
+            .bubble-grid .service-bubble:nth-child(1) { animation-delay: 0s; }
+            .bubble-grid .service-bubble:nth-child(2) { animation-delay: 0.3s; }
+            .bubble-grid .service-bubble:nth-child(3) { animation-delay: 0.6s; }
+            .bubble-grid .service-bubble:nth-child(4) { animation-delay: 0.9s; }
+            .bubble-grid .service-bubble:nth-child(5) { animation-delay: 1.2s; }
+            .bubble-grid .service-bubble:nth-child(6) { animation-delay: 1.5s; }
+            .bubble-grid .service-bubble:nth-child(7) { animation-delay: 1.8s; }
+            .bubble-grid .service-bubble:nth-child(8) { animation-delay: 2.1s; }
+        </style>
+        <section class="pricing-section" id="pricing" style="align-items: center;">
+            <div>
+                <span class="label-text">Simple Pricing</span>
+                <h2 style="margin-bottom: var(--space-sm);">Pay only for what you need</h2>
+                <p class="body-text" style="margin-bottom: var(--space-sm);">No bundles. No contracts. Starting at $10/mo.</p>
+                <a href="https://services-silk-nu.vercel.app/" class="cta-button" style="display: inline-flex; align-items: center; gap: 8px;">
+                    View Services
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">
+                <div style="display: flex; gap: 10px;">
+                    <span class="service-bubble" style="background: var(--color-sage);">📞 Phone</span>
+                    <span class="service-bubble" style="background: var(--color-blue);">🌐 Website</span>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <span class="service-bubble" style="background: var(--color-yellow);">⭐ Reviews</span>
+                    <span class="service-bubble" style="background: var(--color-pink);">📅 Booking</span>
+                    <span class="service-bubble hide-mobile" style="background: var(--color-tan);">💳 Invoicing</span>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <span class="service-bubble" style="background: var(--color-sage);">📱 Social</span>
+                    <span class="service-bubble" style="background: var(--color-blue);">📍 SEO</span>
+                    <span class="service-bubble hide-mobile" style="background: var(--color-yellow);">📧 Email</span>
+                </div>
+                <div class="hide-mobile" style="display: flex; gap: 10px;">
+                    <span class="service-bubble" style="background: var(--color-pink);">🔔 Reminders</span>
+                    <span class="service-bubble" style="background: var(--color-tan);">💬 Text-Back</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section" id="contact">
+            <img src="ace-mascot-clean.png" alt="Ace" class="ace-mascot-img">
+            <h2 style="margin-bottom: var(--space-sm);">Meet Ace, Your Business Buddy</h2>
+            <p class="body-text" style="margin: 0 auto var(--space-md); max-width: 500px;">Ace handles all your digital stuff so you don't have to. No apps. No dashboards. Just text what you need.</p>
+            <a href="#" class="cta-button">Get Started Free</a>
+        </section>
+
+        <footer>
+            <div class="label-text" style="margin: 0;">© 2026 ACE — Consider it handled.</div>
+            <div class="nav-links">
+                <a href="#" class="nav-item" style="font-size: 0.75rem; color: var(--color-text-meta);">Privacy</a>
+                <a href="#" class="nav-item" style="font-size: 0.75rem; color: var(--color-text-meta);">Terms</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const messages = [
+            { type: "user", text: "Ace, I got a bad review on Google 😩", delay: 800 },
+            { type: "typing", delay: 1000 },
+            { type: "ace", text: "I see it — 2 stars from Mike about wait times. Let me draft a response...", delay: 1500 },
+            { type: "typing", delay: 1200 },
+            { type: "ace", text: "Here's what I'd say: \"Hi Mike, thanks for the feedback. We're sorry about the wait — we've added staff during peak hours. Next visit is on us!\" Want me to post it?", delay: 2000 },
+            { type: "user", text: "Post it! 🙌", delay: 1200 },
+            { type: "typing", delay: 800 },
+            { type: "ace", text: "Posted! ✓ I also set up alerts so you'll know about new reviews instantly.", delay: 1500 }
+        ];
+        
+        const chatMessages = document.getElementById('chat-messages');
+        let currentIndex = 0;
+        
+        function showTypingIndicator() {
+            const typing = document.createElement('div');
+            typing.className = 'message ace typing-msg visible';
+            typing.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+            chatMessages.appendChild(typing);
+        }
+        
+        function removeTypingIndicator() {
+            const typing = chatMessages.querySelector('.typing-msg');
+            if (typing) typing.remove();
+        }
+        
+        function addMessage(msg) {
+            const div = document.createElement('div');
+            div.className = `message ${msg.type}`;
+            div.innerHTML = msg.text;
+            chatMessages.appendChild(div);
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    div.classList.add('visible');
+                });
+            });
+        }
+        
+        function playNextMessage() {
+            if (currentIndex >= messages.length) {
+                setTimeout(() => {
+                    chatMessages.innerHTML = '';
+                    currentIndex = 0;
+                    playNextMessage();
+                }, 4000);
+                return;
+            }
+            
+            const msg = messages[currentIndex];
+            
+            if (msg.type === 'typing') {
+                showTypingIndicator();
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    currentIndex++;
+                    playNextMessage();
+                }, msg.delay);
+            } else {
+                addMessage(msg);
+                currentIndex++;
+                setTimeout(playNextMessage, msg.delay);
+            }
+        }
+        
+        setTimeout(playNextMessage, 500);
+    </script>
+</body>
+</html>
